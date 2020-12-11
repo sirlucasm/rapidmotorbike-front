@@ -1,0 +1,27 @@
+.home-header {
+	display: flex;
+	flex-direction: column;
+}
+
+.home-background {
+	background: rgb(255,255,255);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+}
+
+.logo-area {
+	align-self: center;
+}
+.logo-img {
+	user-select: none;
+	pointer-events: none;
+	width: 256px;
+}
+
+
+.home-content-background {
+	background-image: url(../../assets/motorbike-street.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 812px;
+}
