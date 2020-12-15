@@ -1,5 +1,5 @@
 // imports
-import LogoImage from '../../assets/motorbike-logo.png'
+import LogoImage from '../../assets/motorbike-logo.png';
 import MaceioImage from '../../assets/maceio.jpg';
 
 import './style.css';
