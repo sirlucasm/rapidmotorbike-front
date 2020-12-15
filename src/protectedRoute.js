@@ -11,7 +11,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
 				if (UserService.isAuthenticated()) return <Component {...props} />;
 				return (
 					<Redirect to={{
-						pathname: '/',
+						pathname: '/app/signup?t=0',
 						state: {
 							message: 'Você deve estar logado',
 						},
