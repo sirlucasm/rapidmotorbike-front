@@ -10,8 +10,6 @@ export default function SignUp({ history, location }) {
 	useEffect(() => {
 		if (UserService.isAuthenticated()) history.push('/app/dashboard');
     }, [history]);
-    
-    console.log()
 
     return (
         <div className="signup-page signup-background">
