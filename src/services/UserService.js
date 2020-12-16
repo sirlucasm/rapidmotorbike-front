@@ -46,6 +46,25 @@ class UserService {
     logout = async () => {
         localStorage.removeItem('loggedIn');
     }
+
+    searchAddressGeocoding = async (address) => {
+        try {
+            const secretKey = "pk.eyJ1Ijoic2lybHVjYXNtIiwiYSI6ImNraXFzbXIwdzBoam0yemxydTluM2FydnUifQ.QGykGf9MBJk_rwqKPGHx6g";
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${secretKey}`;
+
+            return await API.get(url);
+        } catch (error) {
+            return Promise.reject(error)   ;
+        }
+    }
+
+    getCurrentCoordinates = () => {
+        return JSON.parse(localStorage.getItem('coordinates'));
+    }
+
+    getCurrentLocale = () => {
+        return localStorage.getItem('locale');
+    }
 }
 
 export default new UserService();

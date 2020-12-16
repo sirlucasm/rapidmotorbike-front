@@ -1,0 +1,11 @@
+.my-map-start-travel {
+    background-color: rgb(187, 78, 28);
+    padding: 8px 12px;
+    color: #fff !important;
+    border-radius: 10px;
+}
+.my-map-start-travel:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(143, 62, 25);
+}
