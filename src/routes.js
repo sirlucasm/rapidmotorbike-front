@@ -5,6 +5,7 @@ import ProtectedRoute from './protectedRoute';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 export default function Routes() {
 	return (
@@ -14,6 +15,7 @@ export default function Routes() {
 				<Route exact path="/" component={Home} />
 				{/* SIGN SCOPE */}
 				<Route path="/app/signup" component={SignUp} />
+				<Route path="/app/login" component={Login} />
                 {/* DASHBOARD SCOPE */}
                 <ProtectedRoute path="/app/dashboard" component={Dashboard} />
 			</Switch>

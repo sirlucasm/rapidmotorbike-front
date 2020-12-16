@@ -35,7 +35,6 @@ export default function Dashboard({ history }) {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return null;
         }
-        console.log(openDrawer);
 		setDrawerOpen(openDrawer);
 	};
 

@@ -8,7 +8,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
 		<Route
 			{...rest}
 			render={(props) => {
-				if (true) return <Component {...props} />;
+				if (UserService.isAuthenticated()) return <Component {...props} />;
 				return (
 					<Redirect to={{
 						pathname: '/app/login',

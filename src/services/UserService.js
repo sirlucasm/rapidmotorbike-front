@@ -15,8 +15,8 @@ class UserService {
 
     login = async (params) => {
         try{
-            const user = await API.post('/user/login', params);
-            if (user.data) {
+            const user = await API.post('/users/login', params);
+            if (user.data.length > 0) {
                 localStorage.setItem('loggedIn', true);
                 return user;
             } return false;

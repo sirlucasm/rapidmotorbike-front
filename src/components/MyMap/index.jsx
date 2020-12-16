@@ -1,4 +1,4 @@
-import { Icon } from 'leaflet';
+import 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function MyMap({
