@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Travel from './pages/Travel';
 
 export default function Routes() {
 	return (
@@ -18,6 +19,7 @@ export default function Routes() {
 				<Route path="/app/login" component={Login} />
                 {/* DASHBOARD SCOPE */}
                 <ProtectedRoute path="/app/dashboard" component={Dashboard} />
+				<ProtectedRoute path="/app/start-travel" component={Travel} />
 			</Switch>
 		</BrowserRouter>
 	);

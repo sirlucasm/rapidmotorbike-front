@@ -3,8 +3,8 @@ import API from '../configs/axios';
 class UserService {
     create = async (params) => {
         try{
-            const user = await API.post('/users', params);
             if (params) {
+                const user = await API.post('/users', params);
                 localStorage.setItem('loggedIn', true);
                 return user;
             } return false;
@@ -17,9 +17,20 @@ class UserService {
         try{
             const user = await API.post('/users/login', params);
             if (user.data.length > 0) {
-                localStorage.setItem('loggedIn', true);
+                localStorage.setItem('loggedIn', user);
                 return user;
             } return false;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+
+    fetchLoggedUser = async () => {
+        try {
+            if (this.isAuthenticated()) {
+                const loggedUser = localStorage.getItem('loggedIn');
+                return await API.post('/users/me', loggedUser.id);
+            } return null;
         } catch (error) {
             return Promise.reject(error);
         }
