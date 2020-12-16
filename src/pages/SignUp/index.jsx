@@ -44,7 +44,7 @@ export default function SignUp({ history, location }) {
             birthDate
         };
         
-        UserService.verifyCellNumber(params.cell_phone)
+        UserService.verifyCellNumber(params.cellPhone)
             .then(res => {
                 if (res.data.valid) {
                     UserService.create(params)

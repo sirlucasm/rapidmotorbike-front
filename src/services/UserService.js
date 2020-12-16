@@ -16,10 +16,12 @@ class UserService {
     login = async (params) => {
         try{
             const user = await API.post('/users/login', params);
-            if (user.data.length > 0) {
-                localStorage.setItem('loggedIn', user);
+            if (user.data) {
+                localStorage.setItem('loggedIn', JSON.stringify(user));
                 return user;
-            } return false;
+            } return Promise.reject({
+                message: "Alguma credencial está incorreta"
+            });
         } catch (error) {
             return Promise.reject(error);
         }
@@ -28,7 +30,8 @@ class UserService {
     fetchLoggedUser = async () => {
         try {
             if (this.isAuthenticated()) {
-                const loggedUser = localStorage.getItem('loggedIn');
+                const loggedUser = JSON.parse(localStorage.getItem('loggedIn'));
+                console.log(loggedUser)
                 return await API.post('/users/me', loggedUser.id);
             } return null;
         } catch (error) {

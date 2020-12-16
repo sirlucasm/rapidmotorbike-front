@@ -3,7 +3,7 @@ import API from '../configs/axios';
 class PaymentsInfosService {
     create = async (params) => {
         try{
-            return await API.post('/payments-infos', params);
+            return await API.post('/paymentsInfos', params);
         } catch (error) {
             return Promise.reject(error);
         }
@@ -11,7 +11,7 @@ class PaymentsInfosService {
 
     fetchPaymentsInfos = async (userId) => {
         try {
-            return await API.post(`/my-payments-infos`, userId);
+            return await API.post(`/myPaymentsInfos`, userId);
         } catch (error) {
             return Promise.reject(error);
         }

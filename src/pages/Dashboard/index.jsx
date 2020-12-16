@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import MyMap from '../../components/MyMap';
@@ -77,6 +77,17 @@ export default function Dashboard({ history }) {
             }))
             .catch(error => console.log(error.message));
     }
+
+    useEffect(() => {
+        if (!UserService.getCurrentCoordinates() && !UserService.getCurrentLocale()) {
+            navigator.geolocation.watchPosition(
+                (res) => {
+                    localStorage.setItem('locale', "Localização atual");
+                    localStorage.setItem('coordinates', JSON.stringify([res.coords.latitude, res.coords.longitude]));
+                }
+            )
+        }
+    }, [])
 
     return (
         <div className="dashboard-page">

@@ -32,7 +32,7 @@ export default function Login({ history, location }) {
         };
         UserService.login(params)
             .then(() => history.replace('/app/dashboard'))
-            .catch(error => console.log(error.message));
+            .catch(error => alert(error.message));
         event.preventDefault();
     }
 
