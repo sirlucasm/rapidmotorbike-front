@@ -8,10 +8,10 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
 		<Route
 			{...rest}
 			render={(props) => {
-				if (UserService.isAuthenticated()) return <Component {...props} />;
+				if (true) return <Component {...props} />;
 				return (
 					<Redirect to={{
-						pathname: '/app/signup?t=0',
+						pathname: '/app/login',
 						state: {
 							message: 'Você deve estar logado',
 						},

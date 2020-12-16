@@ -1,13 +1,24 @@
 import API from '../configs/axios';
-import Nexmo from 'nexmo';
 
 class UserService {
+    create = async (params) => {
+        try{
+            const user = await API.post('/users', params);
+            if (params) {
+                localStorage.setItem('loggedIn', true);
+                return user;
+            } return false;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+
     login = async (params) => {
         try{
-            const user = API.post('/user/login', params);
+            const user = await API.post('/user/login', params);
             if (user.data) {
                 localStorage.setItem('loggedIn', true);
-                return user.data;
+                return user;
             } return false;
         } catch (error) {
             return Promise.reject(error);
@@ -20,18 +31,20 @@ class UserService {
         return false;
     }
 
-    verifyCellNumber = (number) => {
-        
-        const nexmo = new Nexmo({
-            apiKey: '1c161e13',
-            apiSecret: 'wtmm96Aty3N4UbDf',
-        });
+    verifyCellNumber = async (number) => {
+        try {
+            const secretKey = "6c277be944537bf4d2a0ea46af1ee216";
+            const countryCode = "BR";
+            const url = `http://apilayer.net/api/validate?access_key=${secretKey}&number=${number}&country_code=${countryCode}&format=1`;
 
-        const from = 'Vonage APIs';
-        const to = `55${number}`;
-        const text = 'Hello from Vonage SMS API';
+            return await API.get(url);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
 
-        nexmo.message.sendSms(from, to, text);
+    logout = async () => {
+        localStorage.removeItem('loggedIn');
     }
 }
 

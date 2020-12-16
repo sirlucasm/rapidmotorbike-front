@@ -30,11 +30,8 @@ export default function SignUp({ history, location }) {
     const [email, setEmail] = useState();
     const [cellPhone, setCellPhone] = useState();
     const [password, setPassword] = useState();
-    const [userType, setUserType] = useState();
-    const [address, setAddress] = useState();
+    const [userType] = useState(typeUser);
     const [birthDate, setBirthDate] = useState();
-
-    const [addAddress, setAddAddress] = useState(false);
 
     const signup = (event) => {
         const params = {
@@ -43,13 +40,21 @@ export default function SignUp({ history, location }) {
             cell_phone: cellPhone,
             password,
             user_type: userType,
-            address,
             birth_date: birthDate
         };
-        if (!addAddress) delete params.address;
         
         UserService.verifyCellNumber(params.cell_phone)
-        
+            .then(res => {
+                if (res.data.valid) {
+                    UserService.create(params)
+                        .then(() => history.replace('/app/dashboard'))
+                        .catch(error => console.log(error.message));
+                } else {
+                    alert("Número não existe");
+                }
+            })
+            .catch(error => console.log(error.message));
+        event.preventDefault();
     }
 
 	useEffect(() => {
@@ -65,21 +70,51 @@ export default function SignUp({ history, location }) {
                 <img className="signup-logo-img" src={LogoImage} alt="Motorbike Logotipo" />
             </div>
             <div className="signup-content">
-                <div className="signup-content-form" autoComplete="on">
+                <form className="signup-content-form" onSubmit={signup} autoComplete="on">
                     <TextField
-                        id="standard-basic"
                         label="Número de telefone"
                         onChange={(e) => setCellPhone(e.target.value)}
                         required
+                        style={{ marginTop: 10 }}
+                        className={classes.button}
+                    />
+                    <TextField
+                        label="Nome"
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        style={{ marginTop: 10 }}
+                        className={classes.button}
+                    />
+                    <TextField
+                        label="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        type="email"
+                        style={{ marginTop: 10 }}
+                        className={classes.button}
+                    />
+                    <TextField
+                        label="Senha"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        type="password"
+                        style={{ marginTop: 10 }}
+                        className={classes.button}
+                    />
+                    <TextField
+                        onChange={(e) => setBirthDate(e.target.value)}
+                        required
+                        type="date"
+                        style={{ marginTop: 20 }}
                         className={classes.button}
                     />
                     <button
                         className="signup-content-form-button"
-                        onClick={signup}
+                        type="submit"
                     > 
                         Criar conta
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     );
