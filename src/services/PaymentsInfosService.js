@@ -9,9 +9,10 @@ class PaymentsInfosService {
         }
     }
 
-    fetchPaymentsInfos = async (userId) => {
+    fetchPaymentsInfos = async (user) => {
         try {
-            return await API.post(`/myPaymentsInfos`, userId);
+            const loggedUser = JSON.parse(localStorage.getItem('loggedIn'));
+            return await API.post(`/myPaymentsInfos`, { id: loggedUser.id });
         } catch (error) {
             return Promise.reject(error);
         }

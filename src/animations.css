@@ -38,6 +38,20 @@
 	}
 }
 
+.fadeInLeft {
+	visibility: visible;
+	animation-name: fadeInLeft;
+	animation-duration: .7s;
+}
+@keyframes fadeInLeft {
+	0% {
+		transform: translate3d(90px, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
 .fadeIn {
 	visibility: visible;
 	animation-name: fadeIn;

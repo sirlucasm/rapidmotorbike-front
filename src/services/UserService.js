@@ -17,7 +17,7 @@ class UserService {
         try{
             const user = await API.post('/users/login', params);
             if (user.data) {
-                localStorage.setItem('loggedIn', JSON.stringify(user));
+                localStorage.setItem('loggedIn', JSON.stringify(user.data));
                 return user;
             } return Promise.reject({
                 message: "Alguma credencial está incorreta"
@@ -31,9 +31,10 @@ class UserService {
         try {
             if (this.isAuthenticated()) {
                 const loggedUser = JSON.parse(localStorage.getItem('loggedIn'));
-                console.log(loggedUser)
-                return await API.post('/users/me', loggedUser.id);
-            } return null;
+                return await API.post('/users/me', { id: loggedUser.id });
+            } return Promise.reject({
+                message: "Você não está logado"
+            });
         } catch (error) {
             return Promise.reject(error);
         }
@@ -68,7 +69,7 @@ class UserService {
 
             return await API.get(url);
         } catch (error) {
-            return Promise.reject(error)   ;
+            return Promise.reject(error);
         }
     }
 
@@ -78,6 +79,14 @@ class UserService {
 
     getCurrentLocale = () => {
         return localStorage.getItem('locale');
+    }
+
+    fetchPilots = async () => {
+        try {
+            return await API.get('/users/userType/1');
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
 }
 
