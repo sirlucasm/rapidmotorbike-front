@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Travel from './pages/Travel';
+import PaymentsInfos from './pages/PaymentsInfos';
 
 export default function Routes() {
 	return (
@@ -20,6 +21,8 @@ export default function Routes() {
                 {/* DASHBOARD SCOPE */}
                 <ProtectedRoute path="/app/dashboard" component={Dashboard} />
 				<ProtectedRoute path="/app/start-travel" component={Travel} />
+				{/* PAYMENTS SCOPE */}
+				<ProtectedRoute path="/app/payments-info" component={PaymentsInfos} />
 			</Switch>
 		</BrowserRouter>
 	);

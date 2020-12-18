@@ -1,0 +1,20 @@
+.payments-infos-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payments-infos-header-title {
+    margin-top: 40px;
+}
+
+.payments-infos-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+.payments-infos-fill-required {
+    color: red;
+    font-style: italic;
+}
